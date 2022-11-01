@@ -12,3 +12,4 @@ more native functions...
 power operator and modulus operator
 Take your time and go through the code.
 Email menezeswilliam29@gmail.com
+THE PROJECT IS COMPILED IN UBUNTU 20.04 USING GCC

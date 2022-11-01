@@ -1,0 +1,11 @@
+/*legendre*/
+prec(8);
+fun some(x){
+	return sin(x)*cos(x)*x;
+}
+fun some2(x){
+	return x*x;
+}
+//print some(2);
+//print fval(sin);
+print gLeg(sin,0,4);

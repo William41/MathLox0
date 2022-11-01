@@ -1,0 +1,43 @@
+/**/
+include("libraries/types/Vector3d.lox");
+class Vector2d{
+	init(x,y){
+		this.x=x;
+		this.y=y;
+	}
+	getX(){
+		return this.x;
+	}
+	getY(){
+		return this.y;
+	}
+	display(){
+		print this.x+"i+"+this.y+"j";
+	}
+	magnitude(){
+		return sqrt(this.x*this.x+this.y*this.y);
+	}
+	direction(){
+		return atan(this.y,this.x);
+	}
+	normalize(){
+		var mag=this.magnitude();
+		return Vector2d(this.x/mag,this.y/mag);
+	}
+	scalar(v){
+		return Vector2d(this.x*v,this.y*v);
+	}
+	dot(v){
+		return Vector2d(this.x*v.x,this.y*v.y);
+	}
+	cross(v){
+		var determinant=this.x*v.y-this.y*v.x;
+		return Vector3d(0,0,determinant);
+	}
+	addWith(v1){
+		return Vector2d(this.x+v1.x,this.y+v1.y);
+	}
+	subtractWith(v){
+		return Vector2d(this.x-v1.x,this.y-v1.y);
+	}
+}

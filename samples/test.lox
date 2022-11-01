@@ -1,0 +1,21 @@
+/*This is a comment
+which is written using two lines
+and this is a third line comment*/
+//This is a single line comment
+/*----------------------*/
+include("libraries/types/Polynomial.lox");
+include("libraries/numeric/Derivatives.lox");
+include("libraries/types/Vector3d.lox");
+fun my_square(x){
+	return x*x*x+sin(x);
+}
+precision(4);
+var p1=Polynomial(3);
+p1.coefficients={1,3,-3,1};
+var p2=RandomPolynomial(10);
+var p4=p1.multiplyWith(p2);
+p4.display();
+var p3=p2.companionMatrix();
+p1.display();
+print p3;
+print secondDerivative(my_square,4);

@@ -1,0 +1,52 @@
+/*****************************************
+*This is a multi line comment---------
+*which is supported by clox-------:)
+*implemeneted by infinite loop---------
++++++++++++++++++++++++++++++++++++++++=
+-------------------------------------
+//////////////////////////////////////
+                                      
+*************************/
+//prec(4);
+/*fun someFunc(x,y,z){
+	return x(z)+y(z);
+}*/
+/*const RAT=29;
+const XYZ=28;
+fun fact(x,y){
+	if(x<0){
+		print x+ " is less than 0";
+	}else if(x>1 and x<10){
+		print x+" lies between 1 and 10";
+	}else if(x>11 and x<20){
+		print x+" lies between 11 and 20";
+	}else if(x>21 and x<30){
+		print x+" lies between 21 and 30";
+	}else if(x>31 and x<40){
+		print x+" lies between 31 and 40";
+	}else{
+		print x +" is greater than 40";
+	}
+	print RAT;
+	return XYZ+y;
+}
+prec(0);
+while(true){
+	print "Enter a number:";
+	var x=input();
+	if(x!=0){
+		print fact(x,2);
+	}else{
+		print "Bye-Bye...";
+		break;
+	}
+}*/
+fun func(x,y){
+	return x*y;
+}
+print func(complex(2,3),complex(8,9));
+prec(9);
+print fval(func,3,4);
+var x=90;
+print "The sine of 90 degrees is:"+sind(x);
+const SOMECONST=38;

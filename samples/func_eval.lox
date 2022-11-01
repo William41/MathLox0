@@ -1,0 +1,19 @@
+/**/
+fun func(x,y){
+	return sin(x*y)+cos(x+y);
+}
+var up=input_number("Enter the upper limit:");
+var low=input_number("Enter the lower limit:");
+var step=input_number("Enter step size:");
+precision(4);
+var sum=0;
+var start=clock();
+for(var i=low;i<up;i=i+step){
+	//for(var j=low;j<up;j=j+step){
+		sum+=func(i,i);
+	//}
+}
+var end=clock();
+print "Time taken :"+(end-start);
+print sum;
+

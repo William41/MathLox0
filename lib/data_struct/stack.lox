@@ -1,0 +1,23 @@
+/**/
+class Stack{
+	init(n){
+		this.top=-1;
+		this.elements=new_list(n);
+	}
+	push(value){
+		this.top=this.top+1;
+		this.elements[this.top]=value;
+	}
+	pop(){
+		var val=this.elements[this.top];
+		this.top=this.top-1;
+		return val;
+	}
+	display(){
+		var i=0;
+		while(i<this.top+1){
+			print this.elements[i];
+			++i;
+		}
+	}
+}

@@ -1,0 +1,286 @@
+/*Package to perform quadrature ie integral of a function using
+* Newton cotes method and 15 point Gaussian quadrature.
+*/
+//set the precision
+precision(14);
+include("lib/Constants.lox");
+var legendre_nodes_15={-0.98799251802049,-0.93727339240071,-0.8482065834104,
+											 -0.72441773136017,-0.57097217260854,-0.39415134707756,
+											 -0.2011940939974,0,0.20119409399743,0.3941513470776,
+											 0.57097217260854,0.72441773136017,0.84820658341043,0.93727339240071,0.98799251802049};
+var legendre_weights_15={0.030753241996117,0.07036604748811,0.1071592204672,
+												 0.13957067792615,0.16626920581699,0.1861610000156,
+												 0.19843148532711,0.2025782419256,0.1984314853271,
+												 0.18616100001556,0.166269205817,0.13957067792615,
+													0.10715922046717,0.0703660474881,0.03075324199612};
+var kronrod_nodes_15={-0.99145537112081,-0.94910791234276,-0.86486442335977,
+											-0.74153118559939,-0.58608723546769,-0.4058451513774,
+											-0.2077849550079,0,0.2077849550079,0.4058451513774,0.58608723546769,
+											 0.74153118559939,0.86486442335977,0.94910791234276,0.99145537112081};
+var kronrod_weights_15={0.02293532201053,0.06309209262998,0.10479001032225,
+												0.14065325971553,0.16900472663927,0.19035057806479,
+												0.2044329400753,0.20948214108473,0.2044329400753,
+												0.1903505780648,0.1690047266393,0.1406532597155,
+												0.10479001032225,0.06309209262998,0.0229353220105};
+var hermite_nodes_15={-4.4999907073094,-3.6699503734045,-2.967166927906,
+											-2.3257324861739,-1.7199925751865,-1.1361155852109,
+											-0.56506958325558,0,0.5650695832556,1.1361155852109,
+											1.7199925751865,2.3257324861739,2.9671669279056,3.6699503734045,4.4999907073094};
+var hermite_weights_15={1.5224758042535E-9,1.0591155477111E-6,1.000044412325E-4,
+												0.002778068842913,0.03078003387255,0.15848891579594,
+												0.4120286874989,0.56410030872642,0.4120286874989,
+												0.15848891579594,0.03078003387255,0.002778068842913,
+												1.000044412325E-4,1.0591155477111E-6,1.5224758042535E-9};
+var chebychev_nodes_1_15={-0.99452189536827,-0.95105651629515,-0.86602540378444,
+													-0.74314482547739,-0.58778525229247,-0.4067366430758,
+													-0.20791169081776,0,0.20791169081776,0.4067366430758,
+													0.58778525229247,0.74314482547739,0.86602540378444,
+													0.95105651629515,0.99452189536827};
+var chebychev_weights_1_15={0.2094395102393,0.2094395102393,0.20943951023932,
+														0.20943951023932,0.20943951023932,0.2094395102393,
+														0.2094395102393,0.2094395102393,0.20943951023932,0.2094395102393,0.2094395102393,
+														0.2094395102393,0.20943951023932,0.2094395102393,0.20943951023932};
+var chebychev_nodes_2_15={};
+var chebychev_weights_2_15={};
+
+//Sometimes functions are specified as a list of
+//(x,f(x)) values in which case use the following 
+//functions...
+//here x=list of x values
+//y=list of y values
+
+fun quadrature_ltrapezoid(x,y){
+	if(!isList(x) or !isList(y)){
+		println("Required either argument to be of list type");
+		return nil;
+	}else{
+	}
+}
+
+fun quadrature_lcomp_trapezoid(x,y){
+	if(!isList(x) or !isList(y)){
+		println("Required either argument to be of list type");
+		return nil;
+	}else{
+	}
+}
+
+fun quadrature_lmidpoint(x,y){
+	if(!isList(x) or !isList(y)){
+		println("Required either argument to be of list type");
+		return nil;
+	}else{
+	}
+}
+
+fun quadrature_lsimpson_13(x,y){
+	if(!isList(x) or !isList(y)){
+		println("Required either argument to be a list type");
+		return nil;
+	}else{
+	}
+}
+
+fun quadrature_lsimpson_38(x,y){
+	//integrate table of x and y by simpsons 3/8th rule
+	if(!isList(x) or !isList(y)){
+		println("Required either argument to be a list type");
+		return nil;
+	}else{
+	}
+}
+
+//func=The lox function to be integrated
+//a=The lower bound of integration
+//b=The upper bound of integration
+
+fun quadrature_trapezoid(func,a,b){
+	if(!is_function(func)){
+		println("Required first argument to be a lox function");
+		return nil;
+	}else{
+		var integral=0;
+		var dx=(b-a)/1024;
+		var mult=0.5*dx;
+		var fx0=func(a);
+		var fxn=func(b);
+		for(var j=1;j<1024;++j)
+			integral+=(2*func(a+j*dx));
+		integral=integral+fx0+fxn;
+		integral*=mult;
+		return integral;
+	}
+}
+
+fun quadrature_trapezoid_h(func,a,b,h){
+	if(!is_function(func)){
+		println("Required first argument to be a lox function");
+		return nil;
+	}else{
+		var integral=0;
+		var n=(b-a)/h;
+		var mult=0.5*h;
+		var fx0=func(a);
+		var fxn=func(b);
+		for(var i=1;i<n;++i)
+			integral+=(2*func(a+i*h));
+		integral=integral+fx0+fxn;
+		integral*=mult;
+		return integral;
+	}
+}
+
+fun quadrature_trapezoid_n(func,a,b,n){
+	if(!is_function(func)){
+		println("Required first argument to be a lox function");
+		return nil;
+	}else{
+		var integral=0;
+		var dx=(b-a)/n;
+		var mult=0.5*dx;
+		var fx0=func(a);
+		var fxn=func(b);
+		for(var i=1;i<n;++i)
+			integral+=(2*func(a+i*dx));
+		integral=integral+fx0+fxn;
+		integral*=mult;
+		return integral;
+	}
+}
+
+fun quadrature_midpoint(func,a,b){
+	if(!is_function(func)){
+		println("Required first argument to be a lox function");
+		return nil;
+	}else{
+		var mid_point=0.0;
+		var integral=0;
+		var dx=(b-a)/1024;
+		var interval_start=a;
+		var interval_end=0;
+		for(var i=0;i<=1024;++i){
+			 interval_start = a;
+       interval_end = a + dx;
+       mid_point = 0.5 * (interval_start + interval_end);
+       integral = integral + (func(mid_point) * dx);
+       a = interval_end;
+		}
+		return integral;
+	}
+}
+
+fun quadrature_midpoint_h(func,a,b,dx){
+	if(!is_function(func)){
+		println("Required first argument to be a lox function");
+		return nil;
+	}else{
+		var mid_point=0.0;
+		var integral=0;
+		var n=(b-a)/dx;
+		var interval_start=a;
+		var interval_end=0;
+		for(var i=0;i<=n;++i){
+			 interval_start = a;
+       interval_end = a + dx;
+       mid_point = 0.5 * (interval_start + interval_end);
+       integral = integral + (func(mid_point) * dx);
+       a = interval_end;
+		}
+		return integral;
+	}
+}
+
+fun quadrature_midpoint_n(func,a,b,n){
+	if(!is_function(func)){
+		println("Required first argument to be a lox function");
+		return nil;
+	}else{
+		var mid_point=0.0;
+		var integral=0;
+		var dx=(b-a)/n;
+		var interval_start=a;
+		var interval_end=0;
+		for(var i=0;i<=n;++i){
+			 interval_start = a;
+       interval_end = a + dx;
+       mid_point = 0.5 * (interval_start + interval_end);
+       integral = integral + (func(mid_point) * dx);
+       a = interval_end;
+		}
+		return integral;
+	}
+}
+
+fun quadrature_simpson_13(func,a,b){
+	if(!isFunction(func)){
+		println("Required first argument to be a lox function");
+		return nil;
+	}else{
+	}
+}
+
+fun quadrature_simpson_38(func,a,b){
+	if(!isFunction(func)){
+		println("Required first argument to be a lox function");
+		return nil;
+	}else{
+	}
+}
+
+fun quadrature_legendre(func,a,b){
+	if(!is_function(func)){
+		println("Required first argument to be a lox function");
+		return nil;
+	}else{
+		var c1=0.5*(b-a);
+		var c2=0.5*(b+a);
+		var integral=0;
+		for(var i=0;i<15;++i){
+			 integral=integral+legendre_weights_15[i] * func(c1*legendre_nodes_15[i]+c2);
+		}
+		return c1*integral;
+	}
+}
+
+fun quadrature_legendre_n(func,a,b,n){
+	if(!isFunction(func)){
+		println("Required first argument to be a lox function");
+		return nil;
+	}else{
+		if(n<=15) return quadrature_legendre(func,a,b);
+		else{
+		}
+	}
+}
+
+fun quadrature_kronrod(func,a,b){
+	if(!isFunction(func)){
+		println("Required first argument to be a lox function");
+		return nil;
+	}else{
+	}
+}
+
+fun quadrature_hermite(func,a,b){
+	if(!isFunction(func)){
+		println("Required first argument to be a lox function");
+		return nil;
+	}else{
+	}
+}
+
+fun quadrature_chebychev_1(func,a,b){
+	if(!isFunction(func)){
+		println("Required first argument to be a lox function");
+		return nil;
+	}else{
+	}
+}
+
+fun quadrature_chebychev_2(func,a,b){
+	if(!isFunction(func)){
+		println("Required first argument to be a lox function");
+		return nil;
+	}else{
+	}
+}

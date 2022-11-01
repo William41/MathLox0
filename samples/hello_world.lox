@@ -1,0 +1,9 @@
+var start=clock();
+precision(9);
+var st=input("Enter");
+var gy="";
+if(st=="") gy=="";
+else gy=st;
+printf("Hello world"+gy);
+var end=clock();
+printf(""+(end-start));

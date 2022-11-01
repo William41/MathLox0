@@ -1,0 +1,14 @@
+/**/
+var register_map={};
+var operation_map={};
+class Proc_8085{
+	init(a,b,c,d,e,h,l){
+		this.acc=a;
+		this.b=b;
+		this.c=c;
+		this.d=d;
+		this.e=e;
+		this.h=h;
+		this.l=l;
+	}
+}

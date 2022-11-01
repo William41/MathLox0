@@ -1,0 +1,49 @@
+/**/
+include("lib/types/Point2d.lox");
+
+
+fun get_midpoint(p1,p2){
+	var midpoint=Point2d(0,0);
+	midpoint.x=(p1.x+p2.x)/2.0;
+	midpoint.y=(p1.y+p2.y)/2.0;
+	return midpoint;
+}
+
+fun section_internal(p1,p2,m,n){
+}
+
+fun section_external(p1,p2,m,n){
+}
+
+fun is_triangle(p1,p2,p3){
+}
+
+fun centroid_tri(p1,p2,p3){
+	if(!(p1 instanceof Point2d) or
+		!(p2 instanceof Point2d) or
+		!(p3 instanceof Point2d)){
+			print "Required point types to calculate the centroid";
+			return nil;
+		}else{
+			var centroid=Point2d(0,0);
+			centroid.x=(p1.x+p2.x+p3.x)/3.0;
+			centroid.y=(p1.y+p2.y+p3.y)/3.0;
+			return centroid;
+		}
+}
+
+fun circumcentre_tri(p1,p2,p3){
+}
+
+fun incentre_tri(p1,p2,p3){
+}
+
+fun orthocentre_tri(p1,p2,p3){
+}
+
+fun area_tri(p1,p2,p3){
+}
+
+fun perimeter_tri(p1,p2,p3){
+}
+

@@ -1,0 +1,20 @@
+var m1=matrix(3,3);
+var m2=matrix(3,3);
+print "Enter the elements of the first matrix:";
+for(var i=0;i<3;++i){
+	for(var j=0;j<3;++j){
+		m1[i,j]=inputNumber("Enter element:"+i+" "+j+" ");
+	}
+}
+var space="   ";
+print "You entered the first matrix:";
+for(var i=0;i<3;++i){
+	for(var j=0;j<3;++j){
+		printf(m1[i,j]+space);
+	}
+	println("");
+}
+var start=clock();
+var d=m1*m2;
+var end=clock();
+print "Time taken:"+(end-start);

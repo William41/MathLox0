@@ -1,0 +1,12 @@
+/**/
+include("lib/types/Point3d.lox");
+var st=clock();
+var sum=0;
+var p;
+for(var i=0;i<=10000000;++i){
+	p=Point3d(i,cos(i+8),sin(i+2));
+	print p.toString();
+}
+print sum;
+print "Time taken:"+(clock()-st);
+

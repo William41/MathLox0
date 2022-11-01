@@ -1,0 +1,22 @@
+/**/
+class Line{
+	init(a,b,c){
+		this.a=a;
+		this.b=b;
+		this.c=c;
+	}
+	toString(){
+		var sign_b="";
+		var sign_c="";
+		if(sign_b>=0)	sign_b="+";
+		if(sign_c>=0) sign_c="+";
+		return this.a+"x"+sign_b+this.b+"y"+sign_c+this.c+"=0";
+	}
+	slope(){
+		return -this.a/this.b;
+	}
+	intercept(){
+		return -this.c/this.b;
+	}
+	
+}

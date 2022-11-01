@@ -1,0 +1,22 @@
+/**/
+class Animalia{
+	eat(){
+		print "With mouth";
+	}
+}
+class Vertebrate<Animalia{
+	eat(){
+		print "may or may not have mouths";
+	}
+}
+class Aves < Vertebrate{
+	eat(){
+		print "Eat by beaks";
+	}
+}
+var monkey=Vertebrate();
+print monkey instanceof Animalia;//true;
+var parrot=Aves();
+print parrot instanceof Vertebrate;	//true
+var dog=Animalia();
+print dog instanceof Aves;//false

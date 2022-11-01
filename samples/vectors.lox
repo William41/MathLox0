@@ -1,0 +1,43 @@
+/**/
+include("libraries/types/Vector2d.lox");
+include("libraries/types/Vector3d.lox");
+include("libraries/operations/vect2d.lox");
+class Zoo {
+  init() {
+    this.aardvark = 1;
+    this.baboon   = 1;
+    this.cat      = 1;
+    this.donkey   = 1;
+    this.elephant = 1;
+    this.fox      = 1;
+  }
+  ant()    { return this.aardvark; }
+  banana() { return this.baboon; }
+  tuna()   { return this.cat; }
+  hay()    { return this.donkey; }
+  grass()  { return this.elephant; }
+  mouse()  { return this.fox; }
+}
+precision(4);
+var zoo = Zoo();
+var v1=nil;
+var v2=nil;
+var v3=nil;
+var sum = 0.0;
+var i=0.0;
+var j=0.0;
+var start = clock();
+while (i < 100000000) {
+	/*v1=Vector2d(i,j);
+	v2=Vector2d(i+1,j+1);
+	v3=vector_add2(v1,v2);
+	sum=sum+v3.magnitude();*/
+	v1=complex(i,j);
+	v2=complex(i+1,j+1);
+	v3=v1+v2;
+	i=i+1;
+	j=j+1;
+}
+
+print clock() - start;
+print sum;

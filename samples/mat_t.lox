@@ -1,0 +1,5 @@
+var t1=rand_matrix(4096);
+var b=rand_matrix(4096,1);
+var start=clock();
+var f=solveWith(t1,b);
+print "Time taken to solve 4096 system:"+(clock()-start);

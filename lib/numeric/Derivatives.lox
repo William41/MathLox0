@@ -1,0 +1,90 @@
+/*The following library implements the methods for 
+ *comuting the derivative of a function */
+ //step size
+var dx=0.0000000162;
+precision(6);
+fun forwardDifference(func,x0){
+	//method uses the forward difference method for estimating
+	//the derivative
+	/*PARAMETERS:
+		func->the lox function whose derivative is to be found
+		x0->value at which the derivative is to be found
+	*/
+	if(!is_function(func)){
+		print "Expected first argument to be function.";
+		return nil;
+	}
+	var fxh=func(x0+dx);
+	var fx=func(x0);
+	var der=(fxh-fx)/dx;
+	return der;
+}
+fun backwardDifference(func,x0){
+//method uses the backward difference method for estimating
+	//the derivative
+	/*PARAMETERS:
+		func->the lox function whose derivative is to be found
+		x0->value at which the derivative is to be found
+	*/
+	if(!is_function(func)){
+		print "Expected first argument to be function.";
+		return nil;
+	}
+	var fxh=func(x0-dx);
+	var fx=func(x0);
+	var der=(fx-fxh)/dx;
+	return der;
+}
+fun centralDifference(func,x0){
+//method uses the central difference method for estimating
+	//the derivative
+	/*PARAMETERS:
+		func->the lox function whose derivative is to be found
+		x0->value at which the derivative is to be found
+	*/
+	if(!is_function(func)){
+		print "Expected first argument to be function.";
+		return nil;
+	}
+	var fxdx = func(x0 + dx);
+ 	var _fxdx = func(x0 - dx);
+  var multiplier = 30864197.53;
+  return multiplier * (fxdx - _fxdx);
+}
+fun firstDerivative(func,x0){
+	return forwardDifference(func,x0);
+}
+fun secondDerivative(func,x0){
+//method uses the central difference method for estimating
+	//the second order derivative
+	/*PARAMETERS:
+		func->the lox function whose derivative is to be found
+		x0->value at which the derivative is to be found
+	*/
+	if(!is_function(func)){
+		print "Expected first argument to be function.";
+		return nil;
+	}
+	dx=0.001;
+	var dx2=0.000001;
+	var fxh=func(x0+dx);
+	var _fxh=func(x0-dx);
+	var fx=func(x0);
+	var quo=fxh+_fxh-(2.0*fx);
+	return quo/dx2;
+}
+fun nthDerivative(func,x0,n,m){
+//method uses the forward difference method for estimating
+	//the derivative
+	/*PARAMETERS:
+		func->the lox function whose derivative is to be found
+		x0->value at which the derivative is to be found
+		m->order of the derivative
+		n->accuracy
+	*/
+	if(!is_function(func)){
+		print "Expected first argument to be function.";
+		return nil;
+	}
+	
+}

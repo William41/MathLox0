@@ -1,0 +1,15 @@
+/**/
+include("lib/types/Polynomial.lox");
+class SecondChebychevPolynomial < Polynomial{
+	init(degree){
+		this.order=degree;
+	}
+	getNodes(){
+	}
+	getWeights(){
+	}
+	display(){
+	}
+	valueAt(x0){
+	}
+}

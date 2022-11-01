@@ -1,0 +1,23 @@
+/**/
+precision(4);
+var order=8192;
+var m1=rand_matrix(order);
+/*var m2=rand_matrix(order2;
+var m3=rand_matrix(order3);
+var m4=rand_matrix(order4);
+var m5=rand_matrix(order5);
+var m6=rand_matrix(order6);*/
+var t1=clock();
+var y=mat_lup(m1);
+t1=clock()-t1;
+/*var t2=clock();
+y=mat_lup(m1);
+t2=clock()-t2;
+var t3=clock();
+y=mat_lup(m1);
+t3=clock()-t3;*/
+
+print "Sample time1:"+t1+" for size "+order;
+//print "Sample time2:"+t2+" for size "+order;
+//print "Sample time3:"+t3+" for size "+order;
+//print "Average sample time:"+((t1+t2+t3)/3)+" for size "+order;

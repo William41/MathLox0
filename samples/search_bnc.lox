@@ -1,0 +1,6 @@
+include("lib/data_struct/search.lox");
+var t=new_list(10000000);
+for(var i=0;i<10000000;++i){
+	t[i]=7*i;
+}
+print binary_srch(t,70);

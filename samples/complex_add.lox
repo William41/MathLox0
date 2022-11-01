@@ -1,0 +1,13 @@
+/*Sample program to add the first 1000000 complex numbers*/
+prec(4);
+fun addComplex(){
+	var sum=complex(0,0);
+	for(var i=0;i<10000000;++i){
+		sum=sum+complex(i,sin(i));
+	}
+	print "The complex sum:"+sum;
+}
+var start=clock();
+addComplex();
+var end=clock();
+print "Time taken:"+(end-start);

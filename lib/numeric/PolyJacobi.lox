@@ -1,0 +1,17 @@
+/**/
+include("lib/types/Polynomial.lox");
+class JacobiPolynomial < Polynomial{
+	init(order,alpha,beta){
+		this.order=order;
+		this.alpha=alpha;
+		this.beta=beta;
+	}
+	getNodes(){
+	}
+	getWeights(){
+	}
+	display(){
+	}
+	valueAt(x0){
+	}
+}

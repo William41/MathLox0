@@ -1,0 +1,15 @@
+/**/
+include("lib/types/Polynomial.lox");
+class HermitePolynomial < Polynomial{
+	init(order){
+		this.order=order;
+	}
+	getNodes(){
+	}
+	getWeights(){
+	}
+	display(){
+	}
+	valueAt(x0){
+	}
+}

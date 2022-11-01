@@ -1,0 +1,45 @@
+/**/
+precision(6);
+
+var m1=rand_matrix(1024);
+var m2=rand_matrix(1024);
+var m3=rand_matrix(1024);
+var m4=rand_matrix(1024);
+var m5=rand_matrix(1024);
+var m6=rand_matrix(1024);
+//var sq=new_list(8192);
+var t=0;
+//var m2=rand_matrix(4096);
+
+/*for(var i=0;i<8192;++i){
+	sq[i]=sqrt(m1[i,0]*m1[i,1]+m1[i,2]*m1[i,3]);
+}*/
+/*for(var i=0;i<rows(m1);++i){
+			for(var k=0;k<rows(m1);++k){
+				var r=m1[i,k];
+				for(var j=0;j<rows(m1);++j){
+					prod[i,j]=prod[i,j]+r*m2[k,j];
+				}
+			}
+		}*/
+		var start=clock();
+		var prod=m1*m2;
+		var prod1=m1*m2;
+		var prod2=m1*m2;
+		var prod3=m1*m2;
+		var prod4=m1*m2;
+		var prod5=m1*m2;
+		var prod6=m1*m2;
+		print prod[*,5];
+		/*print prod1;
+		print prod2;
+		print prod3;
+		print prod4;
+		print prod5;
+		print prod6;print prod;*/
+		print "Time taken:"+(clock()-start);
+//var t=mat_lup(m1);
+//var t=solveWith(m1,b);
+//print t[0];
+
+//print t[0];

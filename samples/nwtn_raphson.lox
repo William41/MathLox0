@@ -1,0 +1,32 @@
+/*This is a lox script that solves an equation
+of the form f(x)=0 using Newton Raphson method*/
+prec(9);
+//final PI=98;
+fun derivative(func,x0){
+	var h=0.00000162;
+	var fxh=func(x0+h);
+	var fx=func(x0);
+	var de=(fxh-fx)/h;
+	return de;
+}
+fun Newton(func,x0){
+	var xn=0;
+	var iter=0;
+	while(true){
+		xn=x0-(func(x0)/derivative(func,x0));
+		if(abs(x0-xn)<0.0001) break;
+		 else 
+			x0=xn;
+	}
+	return xn;
+}
+fun func(x)
+{
+	return x*x-sin(x)*cos(x*PI);
+}
+var start=clock();
+for(var i=0;i<10;++i){
+	print Newton(func,i);
+}
+var end=clock();
+print "The program took: "+ (end-start)+" seconds";

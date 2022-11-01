@@ -1,0 +1,15 @@
+/**/
+include("lib/types/Polynomial.lox");
+class LobattoPolynomial < Polynomial{
+	init(order){
+		this.degree=value;
+	}
+	getNodes(){
+	}
+	getWeights(){
+	}
+	display(){
+	}
+	valueAt(x0){
+	}
+}

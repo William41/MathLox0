@@ -1,0 +1,26 @@
+/**/
+fun add(x,y){
+	return x+y;
+}
+fun sub(x,y){
+	return x-y;
+}
+fun mul(x,y){
+	return x*y;
+}
+fun div(x,y){
+	return x/y;
+}
+
+var list={add,sub,mul,div};
+var list_of_lists={};
+for(var i=0;i<4;++i){
+	append(list_of_lists,{1,2,3+4i});
+}
+print list_of_lists[2];
+var start=clock();
+/*for(var i=0;i<10000000;++i){
+print list[2](4,i);
+}*/
+var end=clock();
+print "time taken:"+(end-start);

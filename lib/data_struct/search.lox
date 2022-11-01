@@ -1,0 +1,33 @@
+/**/
+fun search(set,element){
+	binary_srch(set,element);
+}
+fun binary_srch(set,element){
+	var low=0;
+	var high=len(set)-1;
+	var mid=0;
+	while(low<=high){
+		mid=int_div(high+low,2);
+		if(set[mid]==element){
+			return mid;
+		}
+		if(element<set[mid]){
+			high=mid-1;
+		}
+		else{
+			low=mid+1;
+		}
+	}
+	return -1;
+}
+fun sequential_srch(set,element){
+	var size=len(set);
+	var index=-1;
+	for(var i=0;i<size;++i){
+		if(set[i]==element){
+			index=i;
+			break;
+		}
+	}
+	return index;
+}

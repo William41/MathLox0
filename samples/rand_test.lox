@@ -1,0 +1,7 @@
+var start=clock();
+precision(15);
+for(var i=0;i<10;++i){
+	print sin(i);
+}
+var end=clock();
+print "Time taken:"+(end-start);

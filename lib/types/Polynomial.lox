@@ -1,0 +1,223 @@
+/*Polynomial Library written in lox scripting language*/
+class Polynomial{
+	init(degree){
+		this.degree=degree;
+		this.coefficients=new_list(degree+1);
+	}
+	toString(){
+		var j=len(this.coefficients)-1;
+		var sign="";
+		var t="";
+		while(j>0){
+			var x=this.coefficients[j];
+			if(x>=0) sign="+";
+			else sign="";
+			t+=(sign+x+"x^"+format(j,0));
+			--j;
+		}
+		var x=this.coefficients[0];
+		if(x>0) sign="+";
+		else sign="";
+		t+=(sign+x);
+	return t;
+	}
+	getCoefficients(){
+		return this.coefficients;
+	}
+	getCoefficientAt(index){
+		return this.coefficients[i];
+	}
+	setCoefficients(list_c){
+		if(!is_list(list_c)){
+			print "Error:Expected list type of coefficients";
+			return nil;
+		}
+		this.coefficients=list_c;
+		return true;
+	}
+	addWith(poly){
+		if(!(poly instanceof Polynomial)){
+			println("Expected polynomial as second operand");
+			return nil;
+		}
+		var sum_deg=max(this.degree,poly.degree);
+		var sum=Polynomial(sum_deg);
+		for(var i=0;i<=this.degree;++i){
+			sum.coefficients[i]=this.coefficients[i];
+		}
+		for(var i=0;i<=poly.degree;++i){
+			sum.coefficients[i]=sum.coefficients[i]+poly.coefficients[i];
+		}
+		return sum;
+	}
+	subtractWith(poly){
+		if(!(poly instanceof Polynomial)){
+			println("Expected polynomial as second operand");
+			return nil;
+		}
+		var sum_deg=max(this.degree,poly.degree);
+		var diff=Polynomial(sum_deg);
+		for(var i=0;i<=this.degree;++i){
+			diff.coefficients[i]=this.coefficients[i];
+		}
+		for(var i=0;i<=poly.degree;++i){
+			diff.coefficients[i]=diff.coefficients[i]-poly.coefficients[i];
+		}
+		return sum;
+	}
+	multiplyWith(multiplier){
+		if(multiplier instanceof Polynomial){
+			var degree=this.degree+multiplier.degree;
+			var product=Polynomial(degree);
+			if(degree<1024){
+				for(var i=0;i<=this.degree;++i){
+					var e=this.coefficients[i];
+					for(var j=0;j<=multiplier.degree;++j){
+						var k=i+j;
+						product.coefficients[k]=product.coefficients[k]+e*multiplier.coefficients[j];
+					}
+				}
+			}else{
+				product.coefficients=convolute(this.coefficients,multiplier.coefficients);
+			}
+			return product;
+		}else if(is_num(multiplier) or is_complex(multiplier)){
+			var product=Polynomial(this.degree);
+			//for(var i=0;i<=this.degree;++i){
+			product.coefficients=scalar_mul(multiplier,this.coefficients);
+			//}
+			return product;
+		}else{
+			println("Error:Unexpected type to multiply");
+			return nil;
+		}
+	}
+	divideBy(divisor){
+		if(divisor instanceof Polynomial){
+		//implementation of synthetic division
+			var deg_dd=this.degree;//degree of dividend
+			var deg_dv=divisor.degree;//
+			var norm_term=divisor.coefficients[deg_dv];
+			if(deg_dv>deg_dd) return 0;
+			else{
+				var deg_rem=deg_dv-1;
+				var temp=new_list(deg_dd+1);
+				var quo=Polynomial(deg_dd-deg_rem-1);
+				var ctr=0;
+				var d=0;
+				for(var i=0;i<= deg_dd;++i)
+           temp[i] = this.coefficients[i];
+        for(var i=deg_dd-1;i>=deg_rem;--i){
+        	ctr=0;
+        	for(var j=deg_dv-1;j>=0;--j){
+        		d=(-divisor.coefficients[j]/norm_term)*temp[i+1];
+        		temp[i-ctr]=temp[i-ctr]+d;
+        		++ctr;
+        	}
+        }
+        for(var i=deg_rem+1;i<=deg_dd;++i)
+         	quo.coefficients[i-deg_rem-1] = temp[i]/norm_term;
+				return quo;
+			}
+		}else if(is_num(divisor) or is_complex(divisor)){
+			var quotient=Polynomial(this.degree);
+			for(var i=0;i<=this.degree;++i){
+				quotient.coefficients[i]=0.0;
+			}
+			for(var i=0;i<=this.degree;++i){
+				quotient.coefficients[i]=this.coefficients[i]/divisor;
+			}
+			return quotient;
+		}else{
+			print "Error:Expected either number or polynomial divisor";
+			return nil;
+		}
+	}
+	raisedTo(power){
+		if(power<0){
+			print "Error:Expected positive integral power";
+			return nil;
+		}else{
+			if(power==0){ return 1;}
+			else if(power==1) {return this;}
+			else{
+				--power;
+				var expo=this.multiplyWith(1);
+				var temp=this;
+				while(power>0){
+					if(power%2==1){
+						expo=expo.multiplyWith(temp);
+					}
+				power=int_div(power,2);
+				temp=temp.multiplyWith(temp);
+			}
+			return expo;
+			}
+		}
+	}
+	companionMatrix(){
+		var deg=this.degree;
+		var comp_matrix=new_matrix(deg,deg);
+		var norm=this.coefficients[deg];
+		for(var i = 0; i < deg; ++i){
+     	for(var j = 0;j<deg-1; ++j){
+        if (i>0 and i-j==1){
+         	comp_matrix[i, j] = 1.0;
+          }else{
+            comp_matrix[i, j] = 0.0;
+          }
+       }
+      comp_matrix[i,deg-1] = -this.coefficients[i] / norm;
+    }
+    return comp_matrix;
+	}
+	valueAt(x0){
+		//method uses Horners rule
+		var value=this.coefficients[this.degree];
+		for(var i=this.degree;i>=1;--i){
+			value=x0*value+this.coefficients[i];
+		}
+		return value;
+	}
+	diffrentiate(){
+		var deg=this.degree;
+		var derivative=Polynomial(deg-1);
+		for(var i=1;i<=deg;++i)
+			derivative.coefficients[i-1]=this.coefficients[i]*i;
+		return derivative;
+	}
+	integrate(){
+		var deg=this.degree;
+		var integral=Polynomial(deg+1);
+		for(var i=0;i<=deg;++i)
+			integral.coefficients[i+1]=this.coefficients[i]/(i+1);
+		integral.coefficients[0]=rand();
+		return integral;
+	}
+	completeSquare(){
+		if(this.degree==2){
+			
+			var term_x=this.coefficients[1];
+			var third_term=(0.5*term_x)^2;
+			
+		}else{
+			return this;
+		}
+	}
+}
+class RandomPolynomial<Polynomial{
+	init(degree){
+		this.degree=degree;
+		this.coefficients=new_list(degree+1);
+		for(var i=0;i<=degree;++i)
+			this.coefficients[i]=rand();
+	}
+}
+class UnityPolynomial<Polynomial{
+	init(degree){
+		this.degree=degree;
+		this.coefficients=new_list(degree+1);
+		for(var i=0;i<=degree;++i)
+			this.coefficients[i]=1.0;
+	}
+}

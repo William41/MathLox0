@@ -1,0 +1,41 @@
+/**/
+include("lib/numeric/Quadrature.lox");
+fun test(x){
+	return  sqrt(x)*sin(x)+cos(x)+x^2;
+}
+var t1=clock();
+var q1=quadrature_legendre(test,0,3);
+var _t1=clock()-t1;
+var t2=clock();
+var q2=quadrature_trapezoid(test,0,3);
+var _t2=clock()-t2;
+var t3=clock();
+var q3=quadrature_trapezoid_h(test,0,3,1e-6);
+var _t3=clock()-t3;
+var t4=clock();
+var q4=quadrature_trapezoid_n(test,0,3,1e6);
+var _t4=clock()-t4;
+var t5=clock();
+var q5=quadrature_midpoint(test,0,3);
+var _t5=clock()-t5;
+var t6=clock();
+var q6=quadrature_midpoint_h(test,0,3,1e-6);
+var _t6=clock()-t6;
+var t7=clock();
+var q7=quadrature_midpoint_n(test,0,3,1e6);
+var _t7=clock()-t7;
+
+
+var exact=11.55897175369073;
+print "------------------------------------------";
+print "|         	INTEGRAL RESULTS:             |";
+print "------------------------------------------";
+print "Integral of sqrt(x)*sin(x)+cos(x)+x^2 by: ";
+print "------------------------------------------";
+print "Gauss-Legendre:           "+q1+"  Time taken:    "+_t1+"s"+"  Error:   "+abs(exact-q1);
+print "Default Trapezoid (1024): "+q2+"  Time taken:    "+_t2+"s"+"  Error:   "+abs(exact-q2);
+print "Trapezoid with h=1e-6:    "+q3+"  Time taken:    "+_t3+"s"+"  Error:   "+abs(exact-q3);
+print "Trapezoid with n=1000000: "+q4+"  Time taken:    "+_t4+"s"+"  Error:   "+abs(exact-q4);
+print "Default Midpoint rule:    "+q5+"  Time taken:    "+_t5+"s"+"  Error:   "+abs(exact-q5);
+print "Midpoint rule h=1e-6:     "+q6+"  Time taken:    "+_t6+"s"+"  Error:   "+abs(exact-q6);
+print "Midpoint rule n=1e6:      "+q7+"  Time taken:    "+_t7+"s"+"  Error:   "+abs(exact-q7);

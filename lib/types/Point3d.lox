@@ -1,0 +1,43 @@
+/**/
+class Point3d{
+	init(x,y,z){
+		this.x=x;
+		this.y=y;
+		this.z=z;
+	}
+	toString(){
+		return "("+this.x+","+this.y+","+this.z+")";
+	}
+	equals(p){
+		return this.x==p.x and 
+					 this.y==p.y and 
+					 this.z==p.z;
+	}
+	translate(h,k,m){
+		return Point3d(this.x+h,this.y+k,this.z+m);
+	}
+	scale(s){
+		return Point3d(this.x*s,this.y*s,this.z*s);
+	}
+	cyl_spherical(){
+	}
+	cyl_cartesian(){
+	}
+	sph_cylinderical(){
+	}
+	sph_cartesian(){
+	}
+	cart_spherical(){
+	}
+	cart_cylinderical(){
+	}
+	distance_from_origin(){
+		return sqrt(this.x*this.x+this.y*this.y+this.z*this.z);
+	}
+	distance_from(p1){
+		var dx=p1.x-this.x;
+		var dy=p1.y-this.y;
+		var dz=p1.z-this.z;
+		return sqrt(dx*dx+dy*dy+dz*dz);
+	}
+}

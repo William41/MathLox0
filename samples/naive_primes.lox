@@ -1,0 +1,44 @@
+//program to print primes upto a certain limit
+fun isPrime(n)
+{
+//for 1000000 primes:Time taken:25.59789 seconds
+	var x=0;
+	for(var i=2;i*i<=n;++i){
+		if((n mod i)==0.0){
+			x=1;
+			break;
+		}
+	}
+	return x;
+}
+fun isPrime2(n)
+{
+//Time taken:25.87391 seconds for 1000000 primes
+	var x=0;
+	for(var i=2;i*i<=n;++i){
+		if((n mod i)==0.0){
+			x=1;
+			break;
+		}
+	}
+	if(x==0) return true;
+	else return false;
+}
+precision(5);	
+var limit=inputNumber("Enter a limit:");
+var start=clock();
+for(var i=2;i<limit;++i){
+	if(isPrime(i)==0)
+		print "Prime number:"+i;
+}
+var diff=clock()-start;
+print "Time taken:"+diff+" seconds";
+/*precision(10);
+var aa=0;
+var start=clock();
+for(var i=0;i<1000000;++i){
+	aa=aa+i;
+}
+var end=clock();
+print aa;
+print "Time taken:"+(end-start);*/

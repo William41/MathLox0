@@ -1,0 +1,8 @@
+/**/
+precision(6);
+var order=input_number("Enter the order:");
+var m1=rand_matrix(order);
+var m2=rand_matrix(order);
+var start=clock();
+var n=m1*m2;
+print "Time taken:"+(clock()-start);

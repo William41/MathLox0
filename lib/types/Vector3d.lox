@@ -1,0 +1,58 @@
+/**/
+class Vector3d{
+	init(x,y,z){
+		this.x=x;
+		this.y=y;
+		this.z=z;
+	}
+	getX(){	return this.x;}
+	getY(){ return this.y;}
+	getZ(){	return this.z;}
+	setX(x){ this.x=x;}
+	setY(y){ this.y=y;}
+	setZ(z){ this.z=z;}
+	display(){
+		var sign_y="";
+		var sign_z="";
+		if(this.y>0) sign_y="+";
+		if(this.z>0) sign_z="+";
+		println(this.x+"i"+sign_y+this.y+"j"+sign_z+this.z+"k");
+	}
+	magnitude(){
+		return sqrt(this.x*this.x+this.y*this.y+this.z*this.z);
+	}
+	normalize(){
+		var magn=this.magnitude();
+		return Vector3d(this.x/magn,this.y/magn,this.z/magn);
+	}
+	alpha(){
+		var magn=this.magnitude();
+		return this.x/magn;
+	}
+	beta(){
+		var magn=this.magnitude();
+		return this.y/magn;
+	}
+	gamma(){
+		var magn=this.magnitude();
+		return this.z/magn;
+	}
+	addWith(v1){
+		return Vector3d(this.x+v1.x,this.y+v1.y,this.z+v1.z);
+	}
+	subtractWith(v1){
+		return Vector3d(this.x-v1.x,this.y-v1.y,this.z-v1.z);
+	}
+	scale(s){
+		return Vector3d(this.x*s,this.y*s,this.z*s);
+	}
+	dot(v1){
+		return Vector3d(this.x*v1.x,this.y*v1.y,this.z*v1.z);
+	}
+	cross(v1){
+		var i=this.y*v1.z-this.z*v1.y;
+		var j=this.x*v1.z-this.z*v1.x;
+		var k=this.x*v1.y-this.y*v1.x;
+		return Vector3d(i,j,k);
+	}
+}

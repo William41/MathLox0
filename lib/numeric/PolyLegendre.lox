@@ -1,0 +1,15 @@
+/**/
+include("lib/types/Polynomial.lox");
+class LegendrePolynomial < Polynomial{
+	init(order){
+		this.degree=order;
+	}
+	getNodes(){
+	}
+	getWeights(){
+	}
+	display(){
+	}
+	valueAt(x0){
+	}
+}

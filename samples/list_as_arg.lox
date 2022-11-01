@@ -1,0 +1,19 @@
+/* lox script to demonstrate passing of list as parameters*/
+fun incrementList(list)
+{
+	for(var i=0;i<len(list);++i){
+		list[i]=list[i]+1;
+	}
+	return list;
+}
+print "Enter the number of list elements:";
+var n=input();
+var List={};
+print "Enter the list elements one by one:";
+for(var i=0;i<n;++i){
+	append(List,input());
+}
+print "The original list is:";
+print List;
+print "Incrementing each list element :";
+print incrementList(List);

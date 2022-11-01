@@ -1,0 +1,66 @@
+/**/
+class LinearEquation{
+	solve_x(a,b,type){
+		//x+a=b
+		if(type==0) return b-a;
+		//x-a=b
+		else if(type==1) return b+a;
+		//ax=b
+		else if(type==2) return b/a;
+		//x/a=b
+		else if(type==3) return b*a;
+		else{
+			print "Invalid equation type";
+			return nil;
+		}
+	}
+	solve_xy(a1,b1,c1,a2,b2,c2){
+		var d=a1*b2-a2*b1;
+		var dx=c1*b2-b1*a2;
+		var dy=a1*c2-a2*c1;
+		var sol=new_matrix(2,1);
+		sol[0,0]=dx/d;
+		sol[1,0]=dy/d;
+		return sol;
+	}
+	solve_xyz(a1,b1,c1,d1,a2,b2,c2,d2,a3,b3,c3,d3){
+		var dx=d1*(b2*c3-c2*b3)-b1*(d2*c3-d3*c2)+c1*(d2*b3-b2*d3);
+		var dy=a1*(d2*c3-c2*d3)-d1*(a2*c3-a3*c2)+c1*(a2*d3-d2*a3);
+		var dz=a1*(b2*d3-d2*b3)-b1*(a2*d3-a3*d2)+d1*(a2*b3-b2*a3);
+		var d=a1*(b2*c3-c2*b3)-b1*(a2*c3-a3*c2)+c1*(a2*b3-b2*a3);
+		var sol=new_list(3,1);
+		sol[0,0]=dx/d;
+		sol[1,0]=dy/d;
+		sol[2,0]=dz/d;
+		return sol;
+	}
+}
+
+class PolynomialEquation{
+	solve_quad(a,b,c){
+		var delta=b*b-4.0*a*c;
+		var sol_set=new_list(2);
+		if(delta>0){
+			var root=sqrt(delta);
+			
+		}else if(delta<0){
+		}else{
+		}
+	}
+	solve_cubic(a,b,c,d){
+	}
+	solve_quartic(a,b,c,d,e){
+	}
+	solve(degree,coeff_list){
+		include("lib/types/Polynomial.lox");
+		var poly_eq=Polynomial(degree);
+		poly_eq.coefficients=coeff_list;
+	}
+}
+class Transcendental{
+	NewtonRaphson(func){
+		include("lib/numeric/Derivatives.lox");
+	}
+	Halleys(func){
+	}
+}

@@ -1,0 +1,16 @@
+/**/
+include("lib/types/Poylnomial.lox");
+class LaguerrePolynomial < Polynomial{
+	init(order,alpha){
+		this.degree=order;
+		this.alpha=alpha;
+	}
+	getNodes(){
+	}
+	getWeights(){
+	}
+	display(){
+	}
+	valueAt(x0){
+	}
+}

@@ -1,0 +1,8 @@
+/*perform loop testing*/
+for(var i=0;i<10;++i){
+	
+	if(i==6) break;
+	print i;
+	//else print "Oh i'm less than 7";
+}
+print "break .... yeh....";

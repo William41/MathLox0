@@ -1,0 +1,22 @@
+/**/
+include("libraries/types/Polynomial.lox");
+include("libraries/types/Vector2d.lox");
+//var p1=RandomPolynomial(10000000);
+//var p2=RandomPolynomial(10000000);
+//p1.display();
+//p2.display();
+var p1=Polynomial(3);
+p1.setCoefficients({1,6,4,2});
+//var p2=Polynomial(2);
+//p2.setCoefficients({-2,3,9});
+precision(6);
+var sum=0;
+var start=clock();
+for(var i=1;i<=10;++i){
+	(p1.raisedTo(i)).display();
+	//println("");
+	}
+//var p4=p2.integrate();
+
+print "time taken:"+(clock()-start);
+print sum;
